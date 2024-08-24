@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main {
+    width: 250px;
+}
+
+.calculator {
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.box {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #333;
+    background-color: #222;
+    color: #fff;
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    overflow: hidden;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    margin: 2px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+button:active {
+    background-color: #ccc;
+    transform: scale(0.98);
+}
+
+    
+    </style>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Calculator</title>
+       <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+       <div class="main">
+           <div class="calculator">
+               <div class="box" id="demo">0</div>
+               <button onclick="allClear()">AC</button>
+               <button onclick="singleClear()">C</button>
+               <button onclick="appendToDisplay('/')">/</button><br>
+               <button onclick="appendToDisplay('*')">*</button>
+               <button onclick="appendToDisplay('-')">-</button>
+               <button onclick="appendToDisplay('+')">+</button><br>
+               <button onclick="appendToDisplay('7')">7</button>
+               <button onclick="appendToDisplay('8')">8</button>
+               <button onclick="appendToDisplay('9')">9</button><br>
+               <button onclick="appendToDisplay('4')">4</button>
+               <button onclick="appendToDisplay('5')">5</button>
+               <button onclick="appendToDisplay('6')">6</button><br>
+               <button onclick="appendToDisplay('1')">1</button>
+               <button onclick="appendToDisplay('2')">2</button>
+               <button onclick="appendToDisplay('3')">3</button><br>
+               <button onclick="appendToDisplay('0')">0</button>
+               <button onclick="calculateResult()">=</button>
+           </div>
+       </div>
+       <script src="script.js"></script>
+   </body>
+   </html>
+   
+
+    </div>
+    <script>
+  
+  let currentInput = '';
+
+function updateDisplay(value) {
+    document.getElementById('demo').innerHTML = value || '0';
+}
+
+function appendToDisplay(val) {
+    if (val === '/' || val === '*' || val === '-' || val === '+') {
+        // Prevent multiple operators in a row
+        if (currentInput.length === 0 || /[/*+\-]$/.test(currentInput)) {
+            return;
+        }
+    }
+    currentInput += val;
+    updateDisplay(currentInput);
+}
+
+function calculateResult() {
+    try {
+        // Ensure only valid expressions are evaluated
+        if (/[/*+\-]$/.test(currentInput)) {
+            currentInput = currentInput.slice(0, -1); // Remove trailing operator
+        }
+        let result = eval(currentInput);
+        updateDisplay(result);
+        currentInput = result.toString();
+    } catch (e) {
+        updateDisplay('Error');
+        currentInput = '';
+    }
+}
+
+function allClear() {
+    currentInput = '';
+    updateDisplay();
+}
+
+function singleClear() {
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay(currentInput);
+}
+
+    
+</script>
+ </body>
+</html>
